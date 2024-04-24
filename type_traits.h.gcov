@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/ext/type_traits.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2005-2021 Free Software Foundation, Inc.
@@ -153,16 +153,16 @@
         -:  149:  // For use in string and vstring.
         -:  150:  template<typename _Type>
         -:  151:    inline bool
-     224*:  152:    __is_null_pointer(_Type* __ptr)
-     224*:  153:    { return __ptr == 0; }
+     133*:  152:    __is_null_pointer(_Type* __ptr)
+     133*:  153:    { return __ptr == 0; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerIcEEbPT_:
     #####:  152:    __is_null_pointer(_Type* __ptr)
     #####:  153:    { return __ptr == 0; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerIKcEEbPT_:
-      224:  152:    __is_null_pointer(_Type* __ptr)
-      224:  153:    { return __ptr == 0; }
+      133:  152:    __is_null_pointer(_Type* __ptr)
+      133:  153:    { return __ptr == 0; }
 ------------------
         -:  154:
         -:  155:  template<typename _Type>

@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/stl_uninitialized.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Raw memory manipulators -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2021 Free Software Foundation, Inc.
@@ -987,7 +987,7 @@
         -:  983:
         -:  984:  template<typename _Tp, typename _Up, typename _Allocator>
         -:  985:    inline void
-       12:  986:    __relocate_object_a(_Tp* __restrict __dest, _Up* __restrict __orig,
+        7:  986:    __relocate_object_a(_Tp* __restrict __dest, _Up* __restrict __orig,
         -:  987:			_Allocator& __alloc)
         -:  988:    noexcept(noexcept(std::allocator_traits<_Allocator>::construct(__alloc,
         -:  989:			 __dest, std::move(*__orig)))
@@ -995,9 +995,9 @@
         -:  991:			    __alloc, std::__addressof(*__orig))))
         -:  992:    {
         -:  993:      typedef std::allocator_traits<_Allocator> __traits;
-       12:  994:      __traits::construct(__alloc, __dest, std::move(*__orig));
-       12:  995:      __traits::destroy(__alloc, std::__addressof(*__orig));
-       12:  996:    }
+        7:  994:      __traits::construct(__alloc, __dest, std::move(*__orig));
+        7:  995:      __traits::destroy(__alloc, std::__addressof(*__orig));
+        7:  996:    }
         -:  997:
         -:  998:  // This class may be specialized for specific types.
         -:  999:  // Also known as is_trivially_relocatable.
@@ -1019,7 +1019,7 @@
         -: 1015:  template <typename _InputIterator, typename _ForwardIterator,
         -: 1016:	    typename _Allocator>
         -: 1017:    inline _ForwardIterator
-      116: 1018:    __relocate_a_1(_InputIterator __first, _InputIterator __last,
+       67: 1018:    __relocate_a_1(_InputIterator __first, _InputIterator __last,
         -: 1019:		   _ForwardIterator __result, _Allocator& __alloc)
         -: 1020:    noexcept(noexcept(std::__relocate_object_a(std::addressof(*__result),
         -: 1021:					       std::addressof(*__first),
@@ -1031,25 +1031,25 @@
         -: 1027:	_ValueType2;
         -: 1028:      static_assert(std::is_same<_ValueType, _ValueType2>::value,
         -: 1029:	  "relocation is only possible for values of the same type");
-      116: 1030:      _ForwardIterator __cur = __result;
-      128: 1031:      for (; __first != __last; ++__first, (void)++__cur)
-       12: 1032:	std::__relocate_object_a(std::__addressof(*__cur),
+       67: 1030:      _ForwardIterator __cur = __result;
+       74: 1031:      for (; __first != __last; ++__first, (void)++__cur)
+        7: 1032:	std::__relocate_object_a(std::__addressof(*__cur),
         -: 1033:				 std::__addressof(*__first), __alloc);
-      116: 1034:      return __cur;
+       67: 1034:      return __cur;
         -: 1035:    }
         -: 1036:
         -: 1037:  template <typename _InputIterator, typename _ForwardIterator,
         -: 1038:	    typename _Allocator>
         -: 1039:    inline _ForwardIterator
-      116: 1040:    __relocate_a(_InputIterator __first, _InputIterator __last,
+       67: 1040:    __relocate_a(_InputIterator __first, _InputIterator __last,
         -: 1041:		 _ForwardIterator __result, _Allocator& __alloc)
         -: 1042:    noexcept(noexcept(__relocate_a_1(std::__niter_base(__first),
         -: 1043:				     std::__niter_base(__last),
         -: 1044:				     std::__niter_base(__result), __alloc)))
         -: 1045:    {
-      116: 1046:      return __relocate_a_1(std::__niter_base(__first),
+       67: 1046:      return __relocate_a_1(std::__niter_base(__first),
         -: 1047:			    std::__niter_base(__last),
-      116: 1048:			    std::__niter_base(__result), __alloc);
+       67: 1048:			    std::__niter_base(__result), __alloc);
         -: 1049:    }
         -: 1050:
         -: 1051:  /// @endcond

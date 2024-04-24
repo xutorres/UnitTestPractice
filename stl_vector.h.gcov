@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/stl_vector.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Vector implementation -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2021 Free Software Foundation, Inc.
@@ -98,9 +98,9 @@
         -:   94:	pointer _M_finish;
         -:   95:	pointer _M_end_of_storage;
         -:   96:
-       81:   97:	_Vector_impl_data() _GLIBCXX_NOEXCEPT
-       81:   98:	: _M_start(), _M_finish(), _M_end_of_storage()
-       81:   99:	{ }
+       44:   97:	_Vector_impl_data() _GLIBCXX_NOEXCEPT
+       44:   98:	: _M_start(), _M_finish(), _M_end_of_storage()
+       44:   99:	{ }
         -:  100:
         -:  101:#if __cplusplus >= 201103L
         -:  102:	_Vector_impl_data(_Vector_impl_data&& __x) noexcept
@@ -132,10 +132,10 @@
         -:  128:      struct _Vector_impl
         -:  129:	: public _Tp_alloc_type, public _Vector_impl_data
         -:  130:      {
-       63:  131:	_Vector_impl() _GLIBCXX_NOEXCEPT_IF(
+       35:  131:	_Vector_impl() _GLIBCXX_NOEXCEPT_IF(
         -:  132:	    is_nothrow_default_constructible<_Tp_alloc_type>::value)
-       63:  133:	: _Tp_alloc_type()
-       63:  134:	{ }
+       35:  133:	: _Tp_alloc_type()
+       35:  134:	{ }
         -:  135:
         -:  136:	_Vector_impl(_Tp_alloc_type const& __a) _GLIBCXX_NOEXCEPT
         -:  137:	: _Tp_alloc_type(__a)
@@ -277,19 +277,19 @@
         -:  273:      typedef _Alloc allocator_type;
         -:  274:
         -:  275:      _Tp_alloc_type&
-      209:  276:      _M_get_Tp_allocator() _GLIBCXX_NOEXCEPT
-      209:  277:      { return this->_M_impl; }
+      117:  276:      _M_get_Tp_allocator() _GLIBCXX_NOEXCEPT
+      117:  277:      { return this->_M_impl; }
         -:  278:
         -:  279:      const _Tp_alloc_type&
-      122:  280:      _M_get_Tp_allocator() const _GLIBCXX_NOEXCEPT
-      122:  281:      { return this->_M_impl; }
+       70:  280:      _M_get_Tp_allocator() const _GLIBCXX_NOEXCEPT
+       70:  281:      { return this->_M_impl; }
         -:  282:
         -:  283:      allocator_type
         -:  284:      get_allocator() const _GLIBCXX_NOEXCEPT
         -:  285:      { return allocator_type(_M_get_Tp_allocator()); }
         -:  286:
         -:  287:#if __cplusplus >= 201103L
-       63:  288:      _Vector_base() = default;
+       35:  288:      _Vector_base() = default;
         -:  289:#else
         -:  290:      _Vector_base() { }
         -:  291:#endif
@@ -334,29 +334,29 @@
         -:  330:      { }
         -:  331:#endif
         -:  332:
-       69:  333:      ~_Vector_base() _GLIBCXX_NOEXCEPT
+       38:  333:      ~_Vector_base() _GLIBCXX_NOEXCEPT
         -:  334:      {
-       69:  335:	_M_deallocate(_M_impl._M_start,
-       69:  336:		      _M_impl._M_end_of_storage - _M_impl._M_start);
-       69:  337:      }
+       38:  335:	_M_deallocate(_M_impl._M_start,
+       38:  336:		      _M_impl._M_end_of_storage - _M_impl._M_start);
+       38:  337:      }
         -:  338:
         -:  339:    public:
         -:  340:      _Vector_impl _M_impl;
         -:  341:
         -:  342:      pointer
-       65:  343:      _M_allocate(size_t __n)
+       37:  343:      _M_allocate(size_t __n)
         -:  344:      {
         -:  345:	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
-       65:  346:	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+       37:  346:	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
         -:  347:      }
         -:  348:
         -:  349:      void
-      130:  350:      _M_deallocate(pointer __p, size_t __n)
+       73:  350:      _M_deallocate(pointer __p, size_t __n)
         -:  351:      {
         -:  352:	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
-      130:  353:	if (__p)
-       63:  354:	  _Tr::deallocate(_M_impl, __p, __n);
-      130:  355:      }
+       73:  353:	if (__p)
+       36:  354:	  _Tr::deallocate(_M_impl, __p, __n);
+       73:  355:      }
         -:  356:
         -:  357:    protected:
         -:  358:      void
@@ -454,10 +454,10 @@
         -:  450:      }
         -:  451:
         -:  452:      static pointer
-      116:  453:      _S_do_relocate(pointer __first, pointer __last, pointer __result,
+       67:  453:      _S_do_relocate(pointer __first, pointer __last, pointer __result,
         -:  454:		     _Tp_alloc_type& __alloc, true_type) noexcept
         -:  455:      {
-      116:  456:	return std::__relocate_a(__first, __last, __result, __alloc);
+       67:  456:	return std::__relocate_a(__first, __last, __result, __alloc);
         -:  457:      }
         -:  458:
         -:  459:      static pointer
@@ -466,11 +466,11 @@
         -:  462:      { return __result; }
         -:  463:
         -:  464:      static pointer
-      116:  465:      _S_relocate(pointer __first, pointer __last, pointer __result,
+       67:  465:      _S_relocate(pointer __first, pointer __last, pointer __result,
         -:  466:		  _Tp_alloc_type& __alloc) noexcept
         -:  467:      {
         -:  468:	using __do_it = __bool_constant<_S_use_relocate()>;
-      116:  469:	return _S_do_relocate(__first, __last, __result, __alloc, __do_it{});
+       67:  469:	return _S_do_relocate(__first, __last, __result, __alloc, __do_it{});
         -:  470:      }
         -:  471:#endif // C++11
         -:  472:
@@ -488,7 +488,7 @@
         -:  484:       *  @brief  Creates a %vector with no elements.
         -:  485:       */
         -:  486:#if __cplusplus >= 201103L
-       63:  487:      vector() = default;
+       35:  487:      vector() = default;
         -:  488:#else
         -:  489:      vector() { }
         -:  490:#endif
@@ -679,12 +679,12 @@
         -:  675:       *  not touched in any way.  Managing the pointer is the user's
         -:  676:       *  responsibility.
         -:  677:       */
-       69:  678:      ~vector() _GLIBCXX_NOEXCEPT
+       38:  678:      ~vector() _GLIBCXX_NOEXCEPT
         -:  679:      {
-       69:  680:	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
-       69:  681:		      _M_get_Tp_allocator());
+       38:  680:	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+       38:  681:		      _M_get_Tp_allocator());
         -:  682:	_GLIBCXX_ASAN_ANNOTATE_BEFORE_DEALLOC;
-       69:  683:      }
+       38:  683:      }
         -:  684:
         -:  685:      /**
         -:  686:       *  @brief  %Vector assignment operator.
@@ -812,8 +812,8 @@
         -:  808:       *  element order.
         -:  809:       */
         -:  810:      iterator
-       81:  811:      begin() _GLIBCXX_NOEXCEPT
-       81:  812:      { return iterator(this->_M_impl._M_start); }
+       45:  811:      begin() _GLIBCXX_NOEXCEPT
+       45:  812:      { return iterator(this->_M_impl._M_start); }
         -:  813:
         -:  814:      /**
         -:  815:       *  Returns a read-only (constant) iterator that points to the
@@ -830,8 +830,8 @@
         -:  826:       *  element order.
         -:  827:       */
         -:  828:      iterator
-      125:  829:      end() _GLIBCXX_NOEXCEPT
-      125:  830:      { return iterator(this->_M_impl._M_finish); }
+       74:  829:      end() _GLIBCXX_NOEXCEPT
+       74:  830:      { return iterator(this->_M_impl._M_finish); }
         -:  831:
         -:  832:      /**
         -:  833:       *  Returns a read-only (constant) iterator that points one past
@@ -919,13 +919,13 @@
         -:  915:      // [23.2.4.2] capacity
         -:  916:      /**  Returns the number of elements in the %vector.  */
         -:  917:      size_type
-      264:  918:      size() const _GLIBCXX_NOEXCEPT
-      264:  919:      { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
+      157:  918:      size() const _GLIBCXX_NOEXCEPT
+      157:  919:      { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
         -:  920:
         -:  921:      /**  Returns the size() of the largest possible %vector.  */
         -:  922:      size_type
-      116:  923:      max_size() const _GLIBCXX_NOEXCEPT
-      116:  924:      { return _S_max_size(_M_get_Tp_allocator()); }
+       67:  923:      max_size() const _GLIBCXX_NOEXCEPT
+       67:  924:      { return _S_max_size(_M_get_Tp_allocator()); }
         -:  925:
         -:  926:#if __cplusplus >= 201103L
         -:  927:      /**
@@ -1044,10 +1044,10 @@
         -: 1040:       *  see at().)
         -: 1041:       */
         -: 1042:      reference
-       17: 1043:      operator[](size_type __n) _GLIBCXX_NOEXCEPT
+       12: 1043:      operator[](size_type __n) _GLIBCXX_NOEXCEPT
         -: 1044:      {
         -: 1045:	__glibcxx_requires_subscript(__n);
-       17: 1046:	return *(this->_M_impl._M_start + __n);
+       12: 1046:	return *(this->_M_impl._M_start + __n);
         -: 1047:      }
         -: 1048:
         -: 1049:      /**
@@ -1144,10 +1144,10 @@
         -: 1140:       *  element of the %vector.
         -: 1141:       */
         -: 1142:      reference
-       58: 1143:      back() _GLIBCXX_NOEXCEPT
+       36: 1143:      back() _GLIBCXX_NOEXCEPT
         -: 1144:      {
         -: 1145:	__glibcxx_requires_nonempty();
-       58: 1146:	return *(end() - 1);
+       36: 1146:	return *(end() - 1);
         -: 1147:      }
         -: 1148:
         -: 1149:      /**
@@ -1188,9 +1188,9 @@
         -: 1184:       *  available.
         -: 1185:       */
         -: 1186:      void
-        6: 1187:      push_back(const value_type& __x)
+        4: 1187:      push_back(const value_type& __x)
         -: 1188:      {
-        6: 1189:	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+        4: 1189:	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
         -: 1190:	  {
         -: 1191:	    _GLIBCXX_ASAN_ANNOTATE_GROW(1);
     #####: 1192:	    _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
@@ -1199,13 +1199,13 @@
         -: 1195:	    _GLIBCXX_ASAN_ANNOTATE_GREW(1);
         -: 1196:	  }
         -: 1197:	else
-        6: 1198:	  _M_realloc_insert(end(), __x);
-        6: 1199:      }
+        4: 1198:	  _M_realloc_insert(end(), __x);
+        4: 1199:      }
         -: 1200:
         -: 1201:#if __cplusplus >= 201103L
         -: 1202:      void
-       49: 1203:      push_back(value_type&& __x)
-       49: 1204:      { emplace_back(std::move(__x)); }
+       28: 1203:      push_back(value_type&& __x)
+       28: 1204:      { emplace_back(std::move(__x)); }
         -: 1205:
         -: 1206:      template<typename... _Args>
         -: 1207:#if __cplusplus > 201402L
@@ -1757,13 +1757,13 @@
         -: 1753:
         -: 1754:      // Called by _M_fill_insert, _M_insert_aux etc.
         -: 1755:      size_type
-       55: 1756:      _M_check_len(size_type __n, const char* __s) const
+       32: 1756:      _M_check_len(size_type __n, const char* __s) const
         -: 1757:      {
-       55: 1758:	if (max_size() - size() < __n)
+       32: 1758:	if (max_size() - size() < __n)
     #####: 1759:	  __throw_length_error(__N(__s));
         -: 1760:
-       55: 1761:	const size_type __len = size() + (std::max)(size(), __n);
-      55*: 1762:	return (__len < size() || __len > max_size()) ? max_size() : __len;
+       32: 1761:	const size_type __len = size() + (std::max)(size(), __n);
+      32*: 1762:	return (__len < size() || __len > max_size()) ? max_size() : __len;
         -: 1763:      }
         -: 1764:
         -: 1765:      // Called by constructors to check initial size.
@@ -1777,15 +1777,15 @@
         -: 1773:      }
         -: 1774:
         -: 1775:      static size_type
-      116: 1776:      _S_max_size(const _Tp_alloc_type& __a) _GLIBCXX_NOEXCEPT
+       67: 1776:      _S_max_size(const _Tp_alloc_type& __a) _GLIBCXX_NOEXCEPT
         -: 1777:      {
         -: 1778:	// std::distance(begin(), end()) cannot be greater than PTRDIFF_MAX,
         -: 1779:	// and realistically we can't store more than PTRDIFF_MAX/sizeof(T)
         -: 1780:	// (even if std::allocator_traits::max_size says we can).
-      116: 1781:	const size_t __diffmax
+       67: 1781:	const size_t __diffmax
         -: 1782:	  = __gnu_cxx::__numeric_traits<ptrdiff_t>::__max / sizeof(_Tp);
-      116: 1783:	const size_t __allocmax = _Alloc_traits::max_size(__a);
-      116: 1784:	return (std::min)(__diffmax, __allocmax);
+       67: 1783:	const size_t __allocmax = _Alloc_traits::max_size(__a);
+       67: 1784:	return (std::min)(__diffmax, __allocmax);
         -: 1785:      }
         -: 1786:
         -: 1787:      // Internal erase functions follow.

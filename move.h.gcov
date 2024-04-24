@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/move.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Move, forward and identity for C++11 + swap -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2007-2021 Free Software Foundation, Inc.
@@ -50,8 +50,8 @@
         -:   46:   */
         -:   47:  template<typename _Tp>
         -:   48:    inline _GLIBCXX_CONSTEXPR _Tp*
-      105:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
-      105:   50:    { return __builtin_addressof(__r); }
+       60:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+       60:   50:    { return __builtin_addressof(__r); }
         -:   51:
         -:   52:#if __cplusplus >= 201103L
         -:   53:
@@ -78,16 +78,16 @@
         -:   74:  template<typename _Tp>
         -:   75:    _GLIBCXX_NODISCARD
         -:   76:    constexpr _Tp&&
-      274:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-      274:   78:    { return static_cast<_Tp&&>(__t); }
+      156:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+      156:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
 _ZSt7forwardIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEOT_RNSt16remove_referenceIS8_E4typeE:
-       34:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-       34:   78:    { return static_cast<_Tp&&>(__t); }
+       20:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+       20:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
 _ZSt7forwardINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEOT_RNSt16remove_referenceIS6_E4typeE:
-      240:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-      240:   78:    { return static_cast<_Tp&&>(__t); }
+      136:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+      136:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
         -:   79:
         -:   80:  /**
@@ -114,12 +114,12 @@ _ZSt7forwardINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEOT_RNSt16remov
         -:  101:  template<typename _Tp>
         -:  102:    _GLIBCXX_NODISCARD
         -:  103:    constexpr typename std::remove_reference<_Tp>::type&&
-     296*:  104:    move(_Tp&& __t) noexcept
-     296*:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+     170*:  104:    move(_Tp&& __t) noexcept
+     170*:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
 _ZSt4moveIRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEONSt16remove_referenceIT_E4typeEOS8_:
-      296:  104:    move(_Tp&& __t) noexcept
-      296:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+      170:  104:    move(_Tp&& __t) noexcept
+      170:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
 _ZSt4moveIRSaIcEEONSt16remove_referenceIT_E4typeEOS3_:
     #####:  104:    move(_Tp&& __t) noexcept

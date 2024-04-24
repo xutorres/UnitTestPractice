@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/stl_algobase.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Core algorithmic facilities -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2021 Free Software Foundation, Inc.
@@ -231,14 +231,14 @@
         -:  227:  template<typename _Tp>
         -:  228:    _GLIBCXX14_CONSTEXPR
         -:  229:    inline const _Tp&
-      172:  230:    min(const _Tp& __a, const _Tp& __b)
+       99:  230:    min(const _Tp& __a, const _Tp& __b)
         -:  231:    {
         -:  232:      // concept requirements
         -:  233:      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
         -:  234:      //return __b < __a ? __b : __a;
-      172:  235:      if (__b < __a)
+       99:  235:      if (__b < __a)
     #####:  236:	return __b;
-      172:  237:      return __a;
+       99:  237:      return __a;
         -:  238:    }
         -:  239:
         -:  240:  /**
@@ -255,14 +255,14 @@
         -:  251:  template<typename _Tp>
         -:  252:    _GLIBCXX14_CONSTEXPR
         -:  253:    inline const _Tp&
-       83:  254:    max(const _Tp& __a, const _Tp& __b)
+       48:  254:    max(const _Tp& __a, const _Tp& __b)
         -:  255:    {
         -:  256:      // concept requirements
         -:  257:      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
         -:  258:      //return  __a < __b ? __b : __a;
-       83:  259:      if (__a < __b)
-       57:  260:	return __b;
-       26:  261:      return __a;
+       48:  259:      if (__a < __b)
+       32:  260:	return __b;
+       16:  261:      return __a;
         -:  262:    }
         -:  263:
         -:  264:  /**
@@ -314,9 +314,9 @@
         -:  310:  template<typename _Iterator>
         -:  311:    _GLIBCXX20_CONSTEXPR
         -:  312:    inline _Iterator
-      348:  313:    __niter_base(_Iterator __it)
+      201:  313:    __niter_base(_Iterator __it)
         -:  314:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
-      348:  315:    { return __it; }
+      201:  315:    { return __it; }
         -:  316:
         -:  317:  template<typename _Ite, typename _Seq>
         -:  318:    _Ite

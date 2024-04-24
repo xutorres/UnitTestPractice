@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/basic_string.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Components for manipulating sequences of characters -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 1997-2021 Free Software Foundation, Inc.
@@ -534,14 +534,14 @@
         -:  530:      // 3076. basic_string CTAD ambiguity
         -:  531:      template<typename = _RequireAllocator<_Alloc>>
         -:  532:#endif
-      208:  533:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
-      208:  534:      : _M_dataplus(_M_local_data(), __a)
+      125:  533:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+      125:  534:      : _M_dataplus(_M_local_data(), __a)
         -:  535:      {
-     208*:  536:	const _CharT* __end = __s ? __s + traits_type::length(__s)
+     125*:  536:	const _CharT* __end = __s ? __s + traits_type::length(__s)
         -:  537:	  // We just need a non-null pointer here to get an exception:
         -:  538:	  : reinterpret_cast<const _CharT*>(__alignof__(_CharT));
-      208:  539:	_M_construct(__s, __end, random_access_iterator_tag());
-      208:  540:      }
+      125:  539:	_M_construct(__s, __end, random_access_iterator_tag());
+      125:  540:      }
         -:  541:
         -:  542:      /**
         -:  543:       *  @brief  Construct string as multiple characters.
@@ -6235,11 +6235,11 @@
         -: 6231:  template<typename _CharT>
         -: 6232:    inline
         -: 6233:    typename __gnu_cxx::__enable_if<__is_char<_CharT>::__value, bool>::__type
-       55: 6234:    operator==(const basic_string<_CharT>& __lhs,
+       38: 6234:    operator==(const basic_string<_CharT>& __lhs,
         -: 6235:	       const basic_string<_CharT>& __rhs) _GLIBCXX_NOEXCEPT
-       55: 6236:    { return (__lhs.size() == __rhs.size()
-       55: 6237:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
-       55: 6238:						    __lhs.size())); }
+       38: 6236:    { return (__lhs.size() == __rhs.size()
+       38: 6237:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
+       38: 6238:						    __lhs.size())); }
         -: 6239:
         -: 6240:  /**
         -: 6241:   *  @brief  Test equivalence of string and C string.

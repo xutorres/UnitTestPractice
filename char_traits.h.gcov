@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/char_traits.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// Character Traits for use by standard string and iostream -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 1997-2021 Free Software Foundation, Inc.
@@ -291,7 +291,7 @@
         -:  287:#ifdef _GLIBCXX_HAVE_BUILTIN_IS_CONSTANT_EVALUATED
         -:  288:      (void) __s;
         -:  289:      // In constexpr contexts all strings should be constant.
-      208:  290:      return __builtin_is_constant_evaluated();
+      125:  290:      return __builtin_is_constant_evaluated();
         -:  291:#else
         -:  292:      while (__builtin_constant_p(*__s) && *__s)
         -:  293:	__s++;
@@ -373,14 +373,14 @@
         -:  369:      }
         -:  370:
         -:  371:      static _GLIBCXX17_CONSTEXPR int
-       33:  372:      compare(const char_type* __s1, const char_type* __s2, size_t __n)
+       21:  372:      compare(const char_type* __s1, const char_type* __s2, size_t __n)
         -:  373:      {
-       33:  374:	if (__n == 0)
+       21:  374:	if (__n == 0)
     #####:  375:	  return 0;
         -:  376:#if __cplusplus >= 201703L
-       33:  377:	if (__builtin_constant_p(__n)
+       21:  377:	if (__builtin_constant_p(__n)
         -:  378:	    && __constant_char_array_p(__s1, __n)
-       33:  379:	    && __constant_char_array_p(__s2, __n))
+       21:  379:	    && __constant_char_array_p(__s2, __n))
         -:  380:	  {
     #####:  381:	    for (size_t __i = 0; __i < __n; ++__i)
     #####:  382:	      if (lt(__s1[__i], __s2[__i]))
@@ -390,17 +390,17 @@
     #####:  386:	    return 0;
         -:  387:	  }
         -:  388:#endif
-       33:  389:	return __builtin_memcmp(__s1, __s2, __n);
+       21:  389:	return __builtin_memcmp(__s1, __s2, __n);
         -:  390:      }
         -:  391:
         -:  392:      static _GLIBCXX17_CONSTEXPR size_t
-      208:  393:      length(const char_type* __s)
+      125:  393:      length(const char_type* __s)
         -:  394:      {
         -:  395:#if __cplusplus >= 201703L
-      208:  396:	if (__constant_string_p(__s))
+      125:  396:	if (__constant_string_p(__s))
     #####:  397:	  return __gnu_cxx::char_traits<char_type>::length(__s);
         -:  398:#endif
-      208:  399:	return __builtin_strlen(__s);
+      125:  399:	return __builtin_strlen(__s);
         -:  400:      }
         -:  401:
         -:  402:      static _GLIBCXX17_CONSTEXPR const char_type*

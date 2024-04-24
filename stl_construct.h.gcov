@@ -1,7 +1,7 @@
         -:    0:Source:/usr/include/c++/11/bits/stl_construct.h
         -:    0:Graph:Password.gcno
         -:    0:Data:Password.gcda
-        -:    0:Runs:2
+        -:    0:Runs:1
         -:    1:// nonstandard construct and destroy functions -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2021 Free Software Foundation, Inc.
@@ -147,25 +147,25 @@
         -:  143:   */
         -:  144:  template<typename _Tp>
         -:  145:    _GLIBCXX14_CONSTEXPR inline void
-       67:  146:    _Destroy(_Tp* __pointer)
+       38:  146:    _Destroy(_Tp* __pointer)
         -:  147:    {
         -:  148:#if __cplusplus > 201703L
         -:  149:      std::destroy_at(__pointer);
         -:  150:#else
-       67:  151:      __pointer->~_Tp();
+       38:  151:      __pointer->~_Tp();
         -:  152:#endif
-       67:  153:    }
+       38:  153:    }
         -:  154:
         -:  155:  template<bool>
         -:  156:    struct _Destroy_aux
         -:  157:    {
         -:  158:      template<typename _ForwardIterator>
         -:  159:	static _GLIBCXX20_CONSTEXPR void
-       69:  160:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
+       38:  160:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  161:	{
-      136:  162:	  for (; __first != __last; ++__first)
-       67:  163:	    std::_Destroy(std::__addressof(*__first));
-       69:  164:	}
+       76:  162:	  for (; __first != __last; ++__first)
+       38:  163:	    std::_Destroy(std::__addressof(*__first));
+       38:  164:	}
         -:  165:    };
         -:  166:
         -:  167:  template<>
@@ -183,7 +183,7 @@
         -:  179:   */
         -:  180:  template<typename _ForwardIterator>
         -:  181:    _GLIBCXX20_CONSTEXPR inline void
-       69:  182:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+       38:  182:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  183:    {
         -:  184:      typedef typename iterator_traits<_ForwardIterator>::value_type
         -:  185:                       _Value_type;
@@ -197,8 +197,8 @@
         -:  193:	return _Destroy_aux<false>::__destroy(__first, __last);
         -:  194:#endif
         -:  195:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-       69:  196:	__destroy(__first, __last);
-       69:  197:    }
+       38:  196:	__destroy(__first, __last);
+       38:  197:    }
         -:  198:
         -:  199:  template<bool>
         -:  200:    struct _Destroy_n_aux

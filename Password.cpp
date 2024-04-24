@@ -44,9 +44,7 @@ Password::Password() {
 }
 
 void Password::set(string pw) {
-    int chars = pw.length();
-    bool mixed_case = has_mixed_case(pw);
-    int leading_chars = count_leading_characters(pw);
+    
     bool previously_used = false;
 
     for (int i = 0; i < pass_history.size(); i++) {
@@ -56,10 +54,10 @@ void Password::set(string pw) {
         }
     }
 
-    if (chars <= 20 && chars >= 8) {
-        if (mixed_case == true) {
-            if (previously_used == false) {
-                if (leading_chars <= 3) {
+    if (pw.length() <= 20 || pw.length() >= 8) {
+        if (has_mixed_case(pw) == true) {
+            if (count_leading_characters(pw) <= 3) {
+                if (previously_used == false) {
                     pass_history.push_back(pw);
                 }
             }
